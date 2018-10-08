@@ -22,8 +22,13 @@ const resetCount = () => ({
 	type: 'RESET',
 });
 
-// simple redux state container example **
-const store = createStore((state = { count: 0 }, action) => {
+
+// Reducers (aka redux state container?)
+// 1. reducers are pure functions
+// 2. Never change state or action
+
+
+const countReducer = (state = { count: 0 }, action) => {
 	// switch statement
 	switch (action.type) {
 		// actions
@@ -46,7 +51,12 @@ const store = createStore((state = { count: 0 }, action) => {
 		default:
 			return state;
 	}
-});
+};
+
+
+const store = createStore(countReducer);
+
+
 
 const unsubscribe = store.subscribe(() => {
 	console.log(store.getState());
