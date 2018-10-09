@@ -4,16 +4,18 @@ import uuid from 'uuid';
 // Expense Action Generators
 // setup as named exports *
 
-// Add_Expense
+// Add_Expense action
 export const addExpense = ( 
-	// default values
+	// default values for addExpense arg(values coming in)
+	// destructure arg, if doesn't exist then empty object
 	{ 
 		description = '', 
-		note = 'default note!', 
+		note = '', 
 		amount = 0, 
 		createdAt = 0 
 	} = {}
 ) => ({
+	// expense object below
 	type: 'ADD_EXPENSE',
 	expense:  {
 		id: uuid(),
