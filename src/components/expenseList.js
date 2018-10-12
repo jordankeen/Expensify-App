@@ -3,6 +3,7 @@ import React from 'react';
 // import Connect, to get list information
 import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
+import selectExpenses from '../selectors/expenses';
 
 // stateless functional comp. for ExpenseList
 const ExpenseList = (props) =>  (
@@ -16,8 +17,7 @@ const ExpenseList = (props) =>  (
 
 const mapStateToProps = (state) => {
 	return  {
-		expenses: state.expenses,
-		filters: state.filters
+		expenses: selectExpenses(state.expenses, state.filters)
 	};
 };
 

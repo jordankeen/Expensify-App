@@ -15,24 +15,26 @@ import './styles/styles.scss';
 const store = configureStore();
 
 // subscribe runs anytime an action is dispatched
-store.subscribe(() => {
-	const state = store.getState();
-	// console.log(state);
-	// only show visible expenses
-	const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-	console.log(visibleExpenses);
-});
+// store.subscribe(() => {
+// 	const state = store.getState();
+// 	// console.log(state);
+// 	// only show visible expenses
+// 	const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+// 	// console.log(visibleExpenses);
+// });
 
 // add expense's
-store.dispatch(addExpense( {description: 'Water Bill', amount: 10000, createdAt: 50000 }));
-store.dispatch(addExpense( {description: 'Gas Bill', amount: 8000, createdAt: 50000 }));
+store.dispatch(addExpense( {description: 'Water Bill', amount: 4500 }));
+store.dispatch(addExpense( {description: 'Gas Bill', createdAt: 1000 }));
+store.dispatch(addExpense( {description: 'Rent', amount: 109500 }));
 
-// set text filter to water
-store.dispatch(setTextFilter('water'));
+// only show visible expenses
+const state = store.getState();
 
-setTimeout(() => {
-	store.dispatch(setTextFilter('rent'));
-}, 3000);
+console.log('state is below');
+console.log(state);
+const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+console.log(visibleExpenses);
 
 // setup provider
 const jsx = (
