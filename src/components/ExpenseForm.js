@@ -11,17 +11,22 @@ import 'react-dates/lib/css/_datepicker.css';
 
 // const date = new Date();
 const now = moment();
-console.log(now.format('MMM Do, YYYY'));
+// console.log(now.format('MMM Do, YYYY'));
 
 export default class ExpenseForm extends React.Component {
-	state =  {
-		description: '',
-		note: '',
-		amount: '',
-		createdAt: moment(),
-		calenderFocused: false,
-		error: ''
-	};
+	constructor(props) {
+		super(props);
+
+		// below, check if props.expense exists for edit expense, or just use default values
+		this.state =  {
+			description: props.expense ? props.expense.description : '',
+			note: props.expense ? props.expense.note : '',
+			amount: props.expense ? (props.expense.amount / 100).toString() : '',
+			createdAt: props.expense ? moment(props.expense.createdAt): moment(),
+			calenderFocused: false,
+			error: ''
+		};
+	}
 	onDescriptionChange = (e) => {
 		const description = e.target.value;
 		this.setState(() => ({ description }));
